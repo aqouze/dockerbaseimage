@@ -1,0 +1,12 @@
+FROM golang:1.18.2-alpine3.16
+
+RUN apk update && apk add git
+RUN apk add --no-cache librdkafka-dev=1.8.2-r0 pkgconf
+RUN apk add --no-cache krb5-pkinit krb5-dev krb5
+RUN apk add --no-cache cyrus-sasl-gssapiv2
+RUN apk add --no-cache build-base gcc abuild binutils binutils-doc gcc-doc
+
+ENV GO111MODULE=on
+RUN mkdir -p ~/.ssh && echo "StrictHostKeyChecking no " > ~/.ssh/config
+
+EXPOSE 8080
