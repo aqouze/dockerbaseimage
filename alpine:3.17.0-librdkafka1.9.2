@@ -1,0 +1,7 @@
+#This is linux alpine image that support librdkafka
+
+FROM alpine:3.17
+RUN apk update
+RUN apk add --no-cache librdkafka-dev=1.9.2-r0 pkgconf
+RUN apk add --no-cache krb5-pkinit krb5
+RUN apk add --no-cache cyrus-sasl-gssapiv2
