@@ -1,0 +1,12 @@
+FROM golang:1.18.2-alpine3.16
+RUN apk update &&\
+    apk --no-cache add git &&\
+    apk --no-cache add build-base gcc abuild binutils binutils-doc gcc-doc &&\
+    apk --no-cache add bash
+
+ENV GO111MODULE=on
+
+RUN mkdir -p ~/.ssh && echo "StrictHostKeyChecking no " > ~/.ssh/config &&\
+    go install github.com/jstemmer/go-junit-report@v1.0.0
+
+EXPOSE 8080
